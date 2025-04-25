@@ -1,61 +1,53 @@
-// File: src/components/Navbar.jsx
-import { useState } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { useEffect, useState } from "react";
 
-function Navbar({ darkMode, setDarkMode }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="flex justify-between items-center p-4 shadow-md bg-white dark:bg-gray-800 sticky top-0 z-50">
-      <h1 className="text-xl font-bold">MyPortfolio</h1>
-      <nav className="hidden md:flex space-x-6">
-        {["Home", "About", "Projects", "Skills", "Contact"].map(
-          (item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="hover:text-blue-600 dark:hover:text-yellow-400 transition"
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-white dark:bg-gray-900 shadow-md" : "bg-transparent"
+      }`}
+    >
+      <div className="flex justify-between items-center px-6 py-8 w-full max-w-[90%] sm:max-w-[95%] lg:max-w-[90%] mx-auto">
+        <div className="flex items-center gap-3 sm:gap-4">
+          <img
+            src="/src/assets/img1.jpg"
+            alt="Sahil Logo"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
+          />
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+              Sahil Iqubal
+            </h1>
+            <p
+              className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300 px-3 py-1 inline-block rounded-full"
+              style={{
+                backgroundColor: "#ffcc00",
+                color: "#333",
+              }}
             >
-              {item}
-            </a>
-          )
-        )}
-      </nav>
-      <div className="flex items-center gap-3">
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="text-gray-700 dark:text-white hover:scale-110 transition"
-          aria-label="Toggle theme"
-        >
-          {darkMode ? (
-            <Sun className="text-yellow-400" />
-          ) : (
-            <Moon className="text-blue-600" />
-          )}
-        </button>
-        <button
-          className="md:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-      {menuOpen && (
-        <div className="flex flex-col items-center bg-white dark:bg-gray-800 p-4 md:hidden absolute top-16 left-0 right-0 shadow-lg">
-          {["Home", "About", "Projects", "Skills", "Experience", "Contact"].map(
-            (item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="py-2 hover:text-blue-600 dark:hover:text-yellow-400 transition"
-              >
-                {item}
-              </a>
-            )
-          )}
+              Full Stack Developer
+            </p>
+          </div>
         </div>
-      )}
+
+        <a
+          href="#contact"
+          className="px-6 py-3 bg-blue-600 text-white hover:text-[#333] rounded-full font-bold hover:bg-blue-700 transition text-xs sm:text-sm md:text-base"
+        >
+          Let’s Talk
+        </a>
+      </div>
     </header>
   );
 }

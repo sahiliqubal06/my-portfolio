@@ -14,7 +14,14 @@ const projectData = [
     title: "ogStore",
     description:
       "An online sneaker store with Razorpay checkout and product search powered by Algolia.",
-    techStack: ["React", "Node.js", "Express", "MongoDB", "Razorpay", "Algolia"],
+    techStack: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Razorpay",
+      "Algolia",
+    ],
     liveLink: "https://ogstore-live-link.com",
     image: "/path/to/ogstore-image.jpg", // Add your project image here
   },
@@ -40,8 +47,9 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 text-center relative z-10">
       {/* Background Blur Effect */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full blur-[180px] opacity-20 z-0"></div>
-
+      {/* <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full blur-[180px] opacity-20 z-0"></div> */}
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full blur-[180px] opacity-25 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-transparent z-0" />
       <h2 className="text-3xl font-semibold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
         Projects
       </h2>
