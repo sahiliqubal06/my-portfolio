@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  FaReact,
-  FaNodeJs,
-  FaGitAlt,
-  FaDocker,
-} from "react-icons/fa";
+import { FaReact, FaNodeJs, FaGitAlt, FaDocker } from "react-icons/fa";
 import {
   SiMongodb,
   SiExpress,
@@ -33,15 +28,8 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section
-      id="skills"
-      className="relative py-24 bg-gray-900 text-white overflow-hidden"
-    >
-      {/* Background Blur Effect */}
-      {/* <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full blur-[180px] opacity-20 z-0" /> */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full blur-[180px] opacity-25 z-0"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-transparent z-0" />
-      <div className="relative z-10 container mx-auto px-4 text-center">
+    <section id="skills" className="py-24  text-white">
+      <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold mb-12">Skills</h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl mx-auto">

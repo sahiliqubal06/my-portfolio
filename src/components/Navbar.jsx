@@ -15,7 +15,7 @@ function Navbar() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-white dark:bg-gray-900 shadow-md" : "bg-transparent"
+        scrolled ? " dark:bg-gray-900 shadow-md" : "bg-transparent"
       }`}
     >
       <div className="flex justify-between items-center px-6 py-8 w-full max-w-[90%] sm:max-w-[95%] lg:max-w-[90%] mx-auto">

@@ -9,8 +9,8 @@ import {
   FaGit,
   FaGithub,
   FaDocker,
-} from "react-icons/fa"; // Import React Icons
-import { SiMongodb, SiExpress, SiTailwindcss } from "react-icons/si"; // Import additional icons
+} from "react-icons/fa";
+import { SiMongodb, SiExpress, SiTailwindcss } from "react-icons/si";
 
 const skills = [
   { name: "HTML5", icon: <FaHtml5 className="text-orange-500" size={60} /> },
@@ -31,10 +31,8 @@ const skills = [
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen flex flex-col items-center justify-center bg-gray-900 overflow-hidden text-center">
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full blur-[180px] opacity-25 z-0"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-transparent z-0" />
-      <div className="relative z-10 px-6 sm:px-8 md:px-12">
+    <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden text-center px-6 sm:px-8 md:px-12">
+      <div className="relative z-10">
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight drop-shadow-lg">
           Hey there, I'm <span className="text-blue-400">Sahil Iqubal</span>
         </h1>
