@@ -18,7 +18,7 @@ export default function About() {
           </div>
         </div>
         <div className="w-full lg:w-1/2 text-center lg:text-left px-2">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 drop-shadow-lg">
+          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-8">
             About Me
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed font-light">
