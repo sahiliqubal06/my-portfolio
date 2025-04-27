@@ -70,6 +70,10 @@ export default function Contact() {
       <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-8">
         Contact Me
       </h2>
+      <p className="text-gray-300 text-sm font-medium sm:text-base mb-8 max-w-xl mx-auto px-4">
+        I'm available for collaboration, new opportunities, or just a quick
+        chat. Feel free to reach out — I’d love to hear from you.
+      </p>
       {status.info.msg && (
         <div
           className={`mb-6 p-4 rounded-lg ${

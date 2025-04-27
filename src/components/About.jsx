@@ -21,7 +21,7 @@ export default function About() {
           <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-8">
             About Me
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed font-light">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed font-medium">
             I’m{" "}
             <span className="text-blue-400 font-semibold">Sahil Iqubal</span>, a
             passionate{" "}

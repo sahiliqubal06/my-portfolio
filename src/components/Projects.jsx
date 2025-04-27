@@ -1,45 +1,77 @@
 import { useEffect, useState } from "react";
 
-// Project data
 const projectData = [
   {
-    title: "HospiCare",
+    title: "PistisGroup: Medical Product Catalog & Admin Dashboard",
     description:
-      "A Hospital Management System built with the MERN stack to streamline hospital operations.",
-    techStack: ["React", "Node.js", "Express", "MongoDB", "JWT", "Cloudinary"],
-    liveLink: "https://hospi-care-live-link.com",
+      "PistisGroup is a medical product catalog and admin dashboard for efficient management, allowing role-based CRUD operations and featuring dynamic galleries for engaging product displays.",
+    techStack: [
+      "React",
+      "Swiper.js",
+      "React Multi Carousel",
+      "TailwindCSS",
+      "Express",
+      "Mongoose",
+      "JWT",
+      "Bcrypt",
+      "Cloudinary",
+      "DaisyUI",
+    ],
+    liveLink: "https://pistis-group.onrender.com",
     image: "/src/assets/p1.png",
+  },
+  {
+    title: "Mern Authentication",
+    description:
+      "This MERN-based authentication platform provides secure features like signup, login, forget password, and reset password. It ensures seamless data handling and interaction, combining robust security and user accessibility.",
+    techStack: [
+      "React",
+      "React Hot Toast",
+      "Zustand",
+      "mailtrap",
+      "Framer Motion",
+      "Express",
+      "Mongoose",
+      "JWT",
+      "Bcrypt",
+      "Dotenv",
+      "TailwindCSS",
+    ],
+    liveLink: "https://hospi-care-live-link.com",
+    image: "/src/assets/p2.png",
+  },
+  {
+    title: "HospiCare: Hospital Management System",
+    description:
+      "A MERN stack application to streamline hospital operations. Manage appointments, doctor schedules, and departmental activities through an intuitive admin dashboard and user-friendly interface.",
+    techStack: [
+      "React",
+      "React Multi Carousel",
+      "Node",
+      "Express",
+      "MongoDB",
+      "JWT",
+      "Cloudinary",
+      "ESLint",
+      "Validator",
+    ],
+    liveLink: "https://hospicare-hms-si.netlify.app",
+    image: "/src/assets/p3.png",
   },
   {
     title: "ogStore",
     description:
       "An online sneaker store with Razorpay checkout and product search powered by Algolia.",
-    techStack: [ "React", "Node.js", "Express", "MongoDB", "Razorpay", "Algolia"],
+    techStack: [
+      "React",
+      "Node",
+      "React Multi Carousel",
+      "Express",
+      "MongoDB",
+      "Razorpay",
+      "Algolia",
+    ],
     liveLink: "https://ogstore-live-link.com",
-    image: "/src/assets/p1.png",
-  },
-  {
-    title: "XYZ Company Website",
-    description:
-      "An informational website with admin management for a medical products company.",
-    techStack: ["React", "Node.js", "Express", "MongoDB"],
-    liveLink: "https://xyz-company-website.com",
-    image: "/src/assets/p1.png",
-  },
-  {
-    title: "XYZ Company Website",
-    description:
-      "An informational website with admin management for a medical products company.",
-    techStack: ["React", "Node.js", "Express", "MongoDB"],
-    liveLink: "https://xyz-company-website.com",
-    image: "/src/assets/p1.png",
-  },
-  {
-    title: "XYZ Company Website",
-    description:
-      "An informational website with admin management for a medical products company.",
-    techStack: ["React", "Node.js", "Express", "MongoDB"],
-    liveLink: "https://xyz-company-website.com",
     image: "/src/assets/p1.png",
   },
 ];
@@ -52,9 +84,18 @@ export default function Projects() {
     setProjects(shuffledProjects);
   }, []);
 
+  const toggleDescription = (index) => {
+    setProjects((prevProjects) =>
+      prevProjects.map((project, i) =>
+        i === index
+          ? { ...project, showFullDescription: !project.showFullDescription }
+          : project
+      )
+    );
+  };
+
   return (
     <section className="py-10 md:py-20 px-4 md:px-6 lg:px-8">
-      {/* Heading */}
       <div className="mb-10 md:mb-16 text-center">
         <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-8">
           Projects
@@ -63,49 +104,60 @@ export default function Projects() {
           A glimpse into some of my recent creations
         </p>
       </div>
-
-      {/* Project Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {projects.map((project, index) => (
-          <a
+          <div
             key={index}
-            href={project.liveLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group bg-white/10 rounded-2xl shadow-lg border border-neutral-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden flex flex-col cursor-pointer relative"
+            className="group hover:scale-105 transition-transform duration-300"
           >
-            {/* Project Image */}
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-40 sm:h-44 md:h-48 object-cover object-center transition-transform duration-500 group-hover:scale-105"
-            />
-
-            {/* Content section with padding - removed top padding */}
-            <div className="pt-0 px-4 pb-4 md:px-6 md:pb-6 flex-grow flex flex-col ">
-              {/* Project Title - removed top margin */}
-              <h3 className="text-xl md:text-2xl font-bold mt-2 mb-2 text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300 ">
-                {project.title}
-              </h3>
-
-              {/* Tech Stack - made smaller */}
-              <div className="flex flex-wrap gap-1 mb-2">
+            <div className="card card-compact bg-white/10 shadow-xl rounded-2xl overflow-hidden h-full min-h-[400px]">
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <figure className="flex items-center justify-center h-48 w-full bg-white">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-contain h-full w-full"
+                  />
+                </figure>
+                <h2 className="card-title text-teal-500 text-xl md:text-2xl text-center mt-2">
+                  {project.title}
+                </h2>
+              </a>
+              <div className="flex flex-wrap gap-1 my-2 justify-center">
                 {project.techStack.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-1.5 py-0.5 text-xs font-medium rounded-full bg-yellow-400 text-gray-800 shadow-sm"
+                    className="px-2 py-0.5 text-xs font-semibold rounded-full bg-yellow-400 text-gray-800"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-
-              {/* Project Description */}
-              <p className="text-white mb-0 text-sm leading-relaxed">
-                {project.description}
-              </p>
+              <div className="card-body flex flex-col justify-between">
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {project.showFullDescription
+                    ? project.description
+                    : project.description.length > 150
+                    ? `${project.description.substring(0, 150)}...`
+                    : project.description}
+                </p>
+                {project.description.length > 150 &&
+                  !project.showFullDescription && (
+                    <button
+                      className="text-teal-500 text-sm mt-2"
+                      onClick={() => toggleDescription(index)}
+                    >
+                      View More
+                    </button>
+                  )}
+              </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </section>
