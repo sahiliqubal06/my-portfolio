@@ -20,7 +20,10 @@ const skills = [
   { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" size={50} /> },
   { name: "JavaScript", icon: <FaJs className="text-yellow-400" size={50} /> },
   { name: "React", icon: <FaReact className="text-cyan-400" size={50} /> },
-  {name: "Tailwind CSS", icon: <SiTailwindcss className="text-teal-300" size={50} />,},
+  {
+    name: "Tailwind CSS",
+    icon: <SiTailwindcss className="text-teal-300" size={50} />,
+  },
   { name: "Node.js", icon: <FaNodeJs className="text-green-500" size={50} /> },
   { name: "Express", icon: <SiExpress className="text-gray-300" size={50} /> },
   { name: "MongoDB", icon: <SiMongodb className="text-green-400" size={50} /> },
@@ -83,7 +86,7 @@ const HeroSection = () => {
           <FaDownload size={22} />
         </a>
       </div>
-   
+
       <div className="relative z-10">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 drop-shadow-lg">
           Hey there, I'm <span className="text-blue-400">Sahil Iqubal</span>
@@ -141,7 +144,6 @@ const HeroSection = () => {
           ))}
         </motion.div>
       </div>
-
     </section>
   );
 };
