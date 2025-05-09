@@ -24,21 +24,28 @@ export default function About() {
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed font-medium">
             I’m{" "}
             <span className="text-blue-400 font-semibold">Sahil Iqubal</span>, a
-            passionate{" "}
+            dedicated{" "}
             <span className="text-yellow-400 font-semibold">
               Full-Stack Developer
             </span>{" "}
-            who loves building elegant, performant, and accessible digital
-            products.
+            with a background in{" "}
+            <span className="text-yellow-400 font-semibold">
+              Computer Science and Engineering
+            </span>
+            .
             <br />
             <br />
-            My mission is to create seamless web experiences that blend clean
-            design with efficient code. Whether I'm crafting a responsive
-            front-end or developing robust APIs, I’m always striving to make
-            meaningful impact through technology.
+            I specialize in designing and developing high-quality, scalable web
+            applications that prioritize performance, accessibility, and
+            user-centric design. From intuitive front-end interfaces to secure
+            and efficient back-end systems, I bring a holistic approach to
+            software development.
             <br />
-            <br />I enjoy collaborating with creative minds, constantly learning
-            new tools, and pushing boundaries with every project I take on.
+            <br />
+            My goal is to deliver impactful digital solutions through clean
+            code, innovative thinking, and effective collaboration. I thrive in
+            fast-paced environments, continuously expand my skill set, and enjoy
+            turning complex challenges into seamless user experiences.
           </p>
         </div>
       </div>
