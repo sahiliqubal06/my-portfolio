@@ -1,35 +1,92 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
+  SiJavascript,
+  SiTailwindcss,
+  SiExpress,
+  SiMongodb,
+  SiRedux,
+  SiBootstrap,
+  SiDaisyui,
+  SiShadcnui,
+  SiHtml5,
+  SiCss3,
+  SiMysql,
+  SiGithub,
+  SiPostman,
+  SiFirebase,
+  SiRender,
+  SiVercel,
+  SiC,
+} from "react-icons/si";
+import {
   FaReact,
   FaNodeJs,
-  FaGit,
-  FaGithub,
+  FaGitAlt,
   FaDocker,
+  FaCode,
+  FaPython,
+  FaDatabase,
   FaLinkedin,
+  FaGithub,
   FaTwitter,
   FaDownload,
 } from "react-icons/fa";
-import { SiMongodb, SiExpress, SiTailwindcss } from "react-icons/si";
+import { MdDesignServices } from "react-icons/md";
 
 const skills = [
-  { name: "HTML5", icon: <FaHtml5 className="text-orange-500" size={50} /> },
-  { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" size={50} /> },
-  { name: "JavaScript", icon: <FaJs className="text-yellow-400" size={50} /> },
-  { name: "React", icon: <FaReact className="text-cyan-400" size={50} /> },
+  {
+    name: "JavaScript",
+    icon: <SiJavascript className="text-yellow-400" size={50} />,
+  },
+  { name: "Python", icon: <FaPython className="text-yellow-300" size={50} /> },
+  { name: "C", icon: <SiC className="text-blue-500" size={50} /> },
+  { name: "React.js", icon: <FaReact className="text-cyan-400" size={50} /> },
+  {
+    name: "Redux Toolkit",
+    icon: <SiRedux className="text-purple-500" size={50} />,
+  },
   {
     name: "Tailwind CSS",
     icon: <SiTailwindcss className="text-teal-300" size={50} />,
   },
+  {
+    name: "Bootstrap",
+    icon: <SiBootstrap className="text-purple-600" size={50} />,
+  },
+  { name: "Daisy UI", icon: <SiDaisyui className="text-pink-400" size={50} /> },
+  {
+    name: "ShadCN UI",
+    icon: <SiShadcnui className="text-indigo-400" size={50} />,
+  },
+  {
+    name: "Material UI",
+    icon: <MdDesignServices className="text-blue-400" size={50} />,
+  },
+  { name: "HTML5", icon: <SiHtml5 className="text-orange-500" size={50} /> },
+  { name: "CSS3", icon: <SiCss3 className="text-blue-500" size={50} /> },
   { name: "Node.js", icon: <FaNodeJs className="text-green-500" size={50} /> },
-  { name: "Express", icon: <SiExpress className="text-gray-300" size={50} /> },
+  {
+    name: "Express.js",
+    icon: <SiExpress className="text-gray-300" size={50} />,
+  },
   { name: "MongoDB", icon: <SiMongodb className="text-green-400" size={50} /> },
-  { name: "Git", icon: <FaGit className="text-orange-400" size={50} /> },
-  { name: "GitHub", icon: <FaGithub className="text-white" size={50} /> },
+  { name: "SQL", icon: <SiMysql className="text-blue-600" size={50} /> },
+  { name: "DBMS", icon: <FaDatabase className="text-gray-500" size={50} /> },
+  { name: "Git", icon: <FaGitAlt className="text-orange-400" size={50} /> },
+  { name: "GitHub", icon: <SiGithub className="text-white" size={50} /> },
+  {
+    name: "Postman",
+    icon: <SiPostman className="text-orange-500" size={50} />,
+  },
   { name: "Docker", icon: <FaDocker className="text-blue-300" size={50} /> },
+  {
+    name: "Firebase",
+    icon: <SiFirebase className="text-yellow-500" size={50} />,
+  },
+  { name: "Render", icon: <SiRender className="text-indigo-400" size={50} /> },
+  { name: "Vercel", icon: <SiVercel className="text-white" size={50} /> },
+  { name: "VS Code", icon: <FaCode className="text-blue-400" size={50} /> },
 ];
 
 const titles = [
@@ -50,6 +107,17 @@ const HeroSection = () => {
     }, 2000);
     return () => clearInterval(interval);
   }, []);
+
+  // Function to handle smooth scrolling to component
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 md:px-10 overflow-hidden">
@@ -79,7 +147,9 @@ const HeroSection = () => {
           <FaTwitter size={22} />
         </a>
         <a
-          href="/path-to-your-resume.pdf"
+          href="https://drive.google.com/file/d/1MDOBOjRQty6IuekdYBTP3mOfnfcZ1QYi/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
           download="SahilResume.pdf"
           className="text-green-400 hover:text-white transition-colors duration-300"
         >
@@ -92,7 +162,7 @@ const HeroSection = () => {
           Hey there, I'm <span className="text-blue-400">Sahil Iqubal</span>
         </h1>
         <p className="mt-6 text-sm sm:text-base md:text-lg text-gray-300 font-medium max-w-2xl mx-auto">
-          I’m a passionate{" "}
+          I'm a passionate{" "}
           <motion.span
             key={currentTitleIndex}
             initial={{ opacity: 0, y: 10 }}
@@ -109,18 +179,24 @@ const HeroSection = () => {
         </p>
 
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <a
-            href="#about"
+          <button
+            onClick={() => scrollToSection("about")}
             className="px-6 py-2 sm:px-8 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow-md hover:scale-105 transition-all duration-300 text-sm sm:text-base"
           >
             About Me
-          </a>
-          <a
-            href="#projects"
+          </button>
+          <button
+            onClick={() => scrollToSection("projects")}
             className="px-6 py-2 sm:px-8 sm:py-3 border-2 border-white hover:bg-white hover:text-black text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 text-sm sm:text-base"
           >
             My Projects
-          </a>
+          </button>
+          <button
+            onClick={() => scrollToSection("skills")}
+            className="px-6 py-2 sm:px-8 sm:py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-full shadow-md hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+          >
+            My Skills
+          </button>
         </div>
       </div>
       <div className="wrapper relative w-full max-w-6xl overflow-hidden h-20 sm:h-24 mt-14 mx-auto">

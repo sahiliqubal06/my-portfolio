@@ -11,6 +11,15 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Smooth scroll without changing URL hash
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -38,8 +47,10 @@ function Navbar() {
             </p>
           </div>
         </div>
+
         <a
           href="#contact"
+          onClick={handleContactClick}
           className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold text-xs sm:text-sm md:text-base shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300"
         >
           Let’s Talk

@@ -22,6 +22,7 @@ import p17 from "../assets/p17.png";
 // import p20 from "../assets/p20.png";
 
 export default function Projects() {
+  const [allProjects, setAllProjects] = useState([]);
   const [fullStackProjects, setFullStackProjects] = useState([]);
   const [frontendProjects, setFrontendProjects] = useState([]);
   const [modalProject, setModalProject] = useState(null);
@@ -401,30 +402,47 @@ export default function Projects() {
   ];
 
   useEffect(() => {
-    const fullStack = projectData.filter((project) => {
-      const stack = project.techStack.join(" ").toLowerCase();
-      return (
-        stack.includes("express") ||
-        stack.includes("mongodb") ||
-        stack.includes("node")
-      );
-    });
+    const all = projectData.map((project) => ({
+      ...project,
+      showActions: false,
+    }));
 
-    const frontend = projectData.filter((project) => {
-      const stack = project.techStack.join(" ").toLowerCase();
-      return (
-        !stack.includes("express") &&
-        !stack.includes("mongodb") &&
-        !stack.includes("node")
-      );
-    });
+    const fullStack = projectData
+      .filter((project) => {
+        const stack = project.techStack.join(" ").toLowerCase();
+        return (
+          stack.includes("express") ||
+          stack.includes("mongodb") ||
+          stack.includes("node")
+        );
+      })
+      .map((project) => ({ ...project, showActions: false }));
 
+    const frontend = projectData
+      .filter((project) => {
+        const stack = project.techStack.join(" ").toLowerCase();
+        return (
+          !stack.includes("express") &&
+          !stack.includes("mongodb") &&
+          !stack.includes("node")
+        );
+      })
+      .map((project) => ({ ...project, showActions: false }));
+
+    setAllProjects(all);
     setFullStackProjects(fullStack);
     setFrontendProjects(frontend);
   }, []);
 
   const toggleActions = (projects, index) => {
-    if (activeTab === "fullstack") {
+    if (activeTab === "all") {
+      setAllProjects(
+        allProjects.map((project, i) => ({
+          ...project,
+          showActions: i === index ? !project.showActions : false,
+        }))
+      );
+    } else if (activeTab === "fullstack") {
       setFullStackProjects(
         fullStackProjects.map((project, i) => ({
           ...project,
@@ -456,35 +474,61 @@ export default function Projects() {
     }
   };
 
+  const getActiveProjects = () => {
+    switch (activeTab) {
+      case "all":
+        return allProjects;
+      case "fullstack":
+        return fullStackProjects;
+      case "frontend":
+        return frontendProjects;
+      default:
+        return allProjects;
+    }
+  };
+
   return (
-    <section className="py-10 md:py-20 px-4 md:px-6 lg:px-8 min-h-screen ">
+    <section
+      id="projects"
+      className="py-10 md:py-20 px-4 md:px-6 lg:px-8 min-h-screen"
+    >
       <div className="mb-10 md:mb-16 text-center">
         <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500 mb-8">
           Projects
         </h2>
-        <p className="text-gray-400 text-base md:text-lg">
+        <p className="text-gray-300 text-xl font-medium sm:text-base mb-8 max-w-xl mx-auto">
           A curated collection of recent projects that reflect my passion for
           design, development, and problem-solving through technology.
         </p>
 
         <div className="flex justify-center mt-8 mb-12">
-          <div className="bg-gray-800 p-1 rounded-xl flex">
+          <div className="flex flex-wrap justify-center gap-2">
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === "all"
+                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30"
+                  : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+              }`}
+            >
+              All
+            </button>
             <button
               onClick={() => setActiveTab("fullstack")}
-              className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300${
                 activeTab === "fullstack"
-                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
-                  : "text-gray-400 hover:text-white"
+                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30"
+                  : "bg-gray-800 text-gray-300 hover:bg-gray-700"
               }`}
             >
               Full Stack
             </button>
             <button
               onClick={() => setActiveTab("frontend")}
-              className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === "frontend"
-                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
-                  : "text-gray-400 hover:text-white"
+                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30"
+                  : "bg-gray-800 text-gray-300 hover:bg-gray-700"
               }`}
             >
               Frontend
@@ -494,109 +538,93 @@ export default function Projects() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {(activeTab === "fullstack" ? fullStackProjects : frontendProjects).map(
-          (project, index) => (
-            <div
-              key={index}
-              className="group relative cursor-pointer"
-              onClick={() =>
-                toggleActions(
-                  activeTab === "fullstack"
-                    ? fullStackProjects
-                    : frontendProjects,
-                  index
-                )
-              }
-            >
-              <div className="card bg-gray-800 border border-gray-700 rounded-xl overflow-hidden h-full transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/20 hover:border-indigo-500/30">
-                <div className="relative h-48 w-full bg-gray-700 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-70"></div>
-                  {project.showActions && (
-                    <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center gap-6 z-10 animate-fadeIn">
+        {getActiveProjects().map((project, index) => (
+          <div
+            key={index}
+            className="group relative cursor-pointer"
+            onClick={() => toggleActions(getActiveProjects(), index)}
+          >
+            <div className="card bg-gray-800 border border-gray-700 rounded-xl overflow-hidden h-full transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/20 hover:border-indigo-500/30">
+              <div className="relative h-48 w-full bg-gray-700 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-70"></div>
+                {project.showActions && (
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center gap-6 z-10 animate-fadeIn">
+                    <button
+                      className="absolute top-2 right-2 bg-gray-800/80 p-1.5 rounded-full text-gray-300 hover:text-white hover:bg-red-600 transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleActions(getActiveProjects(), index);
+                      }}
+                    >
+                      <X size={18} />
+                    </button>
+                    {project.liveLink && (
                       <button
-                        className="absolute top-2 right-2 bg-gray-800/80 p-1.5 rounded-full text-gray-300 hover:text-white hover:bg-red-600 transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleActions(
-                            activeTab === "fullstack"
-                              ? fullStackProjects
-                              : frontendProjects,
-                            index
-                          );
-                        }}
+                        onClick={(e) => navigateToLink(project.liveLink, e)}
+                        className="p-3 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full hover:shadow-lg hover:shadow-violet-500/50 transition-all transform hover:-translate-y-1"
+                        title="View Live Project"
                       >
-                        <X size={18} />
+                        <ExternalLink size={22} className="text-white" />
                       </button>
-                      {project.liveLink && (
-                        <button
-                          onClick={(e) => navigateToLink(project.liveLink, e)}
-                          className="p-3 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full hover:shadow-lg hover:shadow-violet-500/50 transition-all transform hover:-translate-y-1"
-                          title="View Live Project"
-                        >
-                          <ExternalLink size={22} className="text-white" />
-                        </button>
-                      )}
-                      <button
-                        onClick={(e) => navigateToLink(project.githubLink, e)}
-                        className="p-3 bg-gradient-to-br from-gray-600 to-gray-700 rounded-full hover:shadow-lg hover:shadow-gray-600/50 transition-all transform hover:-translate-y-1"
-                        title="View GitHub Repository"
-                      >
-                        <Github size={22} className="text-white" />
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openModal(project);
-                        }}
-                        className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition-all transform hover:-translate-y-1"
-                        title="Show Details"
-                      >
-                        <Maximize2 size={22} className="text-white" />
-                      </button>
-                    </div>
+                    )}
+                    <button
+                      onClick={(e) => navigateToLink(project.githubLink, e)}
+                      className="p-3 bg-gradient-to-br from-gray-600 to-gray-700 rounded-full hover:shadow-lg hover:shadow-gray-600/50 transition-all transform hover:-translate-y-1"
+                      title="View GitHub Repository"
+                    >
+                      <Github size={22} className="text-white" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openModal(project);
+                      }}
+                      className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition-all transform hover:-translate-y-1"
+                      title="Show Details"
+                    >
+                      <Maximize2 size={22} className="text-white" />
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div className="p-5">
+                <h3 className="text-xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-300">
+                  {project.title}
+                </h3>
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {project.techStack.slice(0, 4).map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-700 text-indigo-300 border border-indigo-500/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.techStack.length > 4 && (
+                    <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-700 text-gray-300 border border-gray-600">
+                      +{project.techStack.length - 4}
+                    </span>
                   )}
                 </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-300">
-                    {project.title}
-                  </h3>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.techStack.slice(0, 4).map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-700 text-indigo-300 border border-indigo-500/20"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.techStack.length > 4 && (
-                      <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-700 text-gray-300 border border-gray-600">
-                        +{project.techStack.length - 4}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-2">
-                    {project.description}
-                  </p>
-                  <div className="mt-4 text-xs text-gray-500 flex items-center">
-                    <span className="w-1 h-1 rounded-full bg-gray-500 mr-1"></span>
-                    Click for options
-                  </div>
+                <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-2">
+                  {project.description}
+                </p>
+                <div className="mt-4 text-xs text-gray-500 flex items-center">
+                  <span className="w-1 h-1 rounded-full bg-gray-500 mr-1"></span>
+                  Click for options
                 </div>
               </div>
             </div>
-          )
-        )}
+          </div>
+        ))}
       </div>
 
-      {/* No projects placeholder */}
-      {((activeTab === "fullstack" && fullStackProjects.length === 0) ||
-        (activeTab === "frontend" && frontendProjects.length === 0)) && (
+      {getActiveProjects().length === 0 && (
         <div className="text-center py-16">
           <p className="text-gray-400 text-lg">
             No projects available in this category

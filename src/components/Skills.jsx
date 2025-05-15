@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { FaReact, FaNodeJs, FaGitAlt, FaDocker } from "react-icons/fa";
+import {
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaDocker,
+  FaPython,
+  FaDatabase,
+} from "react-icons/fa";
 import {
   SiMongodb,
   SiExpress,
@@ -8,8 +15,19 @@ import {
   SiCss3,
   SiJavascript,
   SiGithub,
-  SiWebpack,
+  SiBootstrap,
+  SiRedux,
+  SiPostman,
+  SiFirebase,
+  SiVercel,
+  SiC,
+  SiDaisyui,
+  SiShadcnui,
+  SiMysql,
+  SiRender,
 } from "react-icons/si";
+import { MdDesignServices } from "react-icons/md";
+import { FaCode } from "react-icons/fa";
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -23,6 +41,24 @@ export default function Skills() {
 
   const skills = [
     {
+      name: "JavaScript",
+      icon: <SiJavascript className="text-yellow-400" />,
+      category: "frontend",
+      proficiency: 92,
+    },
+    {
+      name: "Python",
+      icon: <FaPython className="text-yellow-300" />,
+      category: "tools",
+      proficiency: 85,
+    },
+    {
+      name: "C",
+      icon: <SiC className="text-blue-500" />,
+      category: "tools",
+      proficiency: 80,
+    },
+    {
       name: "HTML5",
       icon: <SiHtml5 className="text-orange-500" />,
       category: "frontend",
@@ -35,20 +71,44 @@ export default function Skills() {
       proficiency: 85,
     },
     {
-      name: "JavaScript",
-      icon: <SiJavascript className="text-yellow-400" />,
-      category: "frontend",
-      proficiency: 92,
-    },
-    {
-      name: "React",
+      name: "React.js",
       icon: <FaReact className="text-cyan-400" />,
       category: "frontend",
       proficiency: 88,
     },
     {
+      name: "Redux Toolkit",
+      icon: <SiRedux className="text-purple-500" />,
+      category: "frontend",
+      proficiency: 80,
+    },
+    {
       name: "Tailwind CSS",
       icon: <SiTailwindcss className="text-teal-300" />,
+      category: "frontend",
+      proficiency: 85,
+    },
+    {
+      name: "Bootstrap",
+      icon: <SiBootstrap className="text-purple-600" />,
+      category: "frontend",
+      proficiency: 80,
+    },
+    {
+      name: "Daisy UI",
+      icon: <SiDaisyui className="text-pink-400" />,
+      category: "frontend",
+      proficiency: 75,
+    },
+    {
+      name: "ShadCN UI",
+      icon: <SiShadcnui className="text-indigo-400" />,
+      category: "frontend",
+      proficiency: 70,
+    },
+    {
+      name: "Material UI",
+      icon: <MdDesignServices className="text-blue-400" />,
       category: "frontend",
       proficiency: 80,
     },
@@ -59,7 +119,7 @@ export default function Skills() {
       proficiency: 82,
     },
     {
-      name: "Express",
+      name: "Express.js",
       icon: <SiExpress className="text-gray-300" />,
       category: "backend",
       proficiency: 78,
@@ -69,6 +129,18 @@ export default function Skills() {
       icon: <SiMongodb className="text-green-400" />,
       category: "backend",
       proficiency: 75,
+    },
+    {
+      name: "SQL",
+      icon: <SiMysql className="text-blue-600" />,
+      category: "backend",
+      proficiency: 70,
+    },
+    {
+      name: "DBMS",
+      icon: <FaDatabase className="text-gray-500" />,
+      category: "backend",
+      proficiency: 72,
     },
     {
       name: "Git",
@@ -83,16 +155,40 @@ export default function Skills() {
       proficiency: 80,
     },
     {
+      name: "Postman",
+      icon: <SiPostman className="text-orange-500" />,
+      category: "tools",
+      proficiency: 75,
+    },
+    {
       name: "Docker",
       icon: <FaDocker className="text-blue-300" />,
       category: "tools",
       proficiency: 70,
     },
     {
-      name: "Webpack",
-      icon: <SiWebpack className="text-indigo-400" />,
+      name: "Firebase",
+      icon: <SiFirebase className="text-yellow-500" />,
       category: "tools",
-      proficiency: 65,
+      proficiency: 70,
+    },
+    {
+      name: "Render",
+      icon: <SiRender className="text-indigo-400" />,
+      category: "tools",
+      proficiency: 70,
+    },
+    {
+      name: "Vercel",
+      icon: <SiVercel className="text-white" />,
+      category: "tools",
+      proficiency: 75,
+    },
+    {
+      name: "VS Code",
+      icon: <FaCode className="text-blue-400" />,
+      category: "tools",
+      proficiency: 90,
     },
   ];
 
@@ -108,9 +204,10 @@ export default function Skills() {
           <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
             Technical Skills
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            A showcase of the technologies I work with and my proficiency level
-            in each of them.
+          <p className="text-gray-300 text-xl font-medium sm:text-base mb-8 max-w-xl mx-auto">
+            From crafting sleek user interfaces to building powerful backend
+            systems, here's a curated stack of technologies I rely on to create
+            modern, high-performing applications.
           </p>
         </div>
         <div className="flex flex-wrap justify-center mb-12 gap-2">
@@ -128,7 +225,7 @@ export default function Skills() {
             </button>
           ))}
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {filteredSkills.map((skill, index) => (
             <div
               key={index}
@@ -137,7 +234,6 @@ export default function Skills() {
               <div className="text-4xl mb-4 transform transition-all duration-500 hover:rotate-12">
                 {skill.icon}
               </div>
-
               <h3 className="text-lg font-medium mb-3">{skill.name}</h3>
               <div className="w-full bg-gray-700 rounded-full h-2 mb-1 overflow-hidden">
                 <div
