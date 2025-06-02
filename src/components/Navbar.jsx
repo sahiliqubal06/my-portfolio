@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import logoImage from "../assets/img1.jpg";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,7 +33,7 @@ function Navbar() {
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="relative group">
             <img
-              src="/src/assets/img1.jpg"
+              src={logoImage}
               alt="Sahil Logo"
               className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover ring-2 ring-blue-500 group-hover:ring-4 transition-all duration-300"
             />

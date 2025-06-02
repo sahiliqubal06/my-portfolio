@@ -147,7 +147,7 @@ const HeroSection = () => {
           <FaTwitter size={22} />
         </a>
         <a
-          href="https://drive.google.com/file/d/1MDOBOjRQty6IuekdYBTP3mOfnfcZ1QYi/view?usp=sharing"
+          href="https://drive.google.com/file/d/1Bj-zXBTc6DWc8ed7zx1BZwsQyd7sRv6n/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           download="SahilResume.pdf"
